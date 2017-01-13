@@ -1,0 +1,10 @@
+<form (submit)="addTask($event)">
+    <input type="text" [(ngModel)]="title" name="title" placeholder="Name your task" />
+</form>
+<hr/>
+<div>
+    <h2>Tasks</h2>
+    <div *ngFor="let task of tasks">
+        <input type="checkbox"> {{ task.title }} <input type="button" (click)="deleteTask(task._id)" value="Delete" />
+    </div>
+</div>
