@@ -26,5 +26,5 @@ app.use('/', index);
 app.use('/api', tasks);
 
 app.listen(port, function () {
-    console.log('Server Started at ' + port + '!!! :)');
+    console.log('Server Started at ' + port);
 });
