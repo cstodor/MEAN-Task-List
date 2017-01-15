@@ -14,19 +14,19 @@ router.get('/tasks', function (req, res, next) {
 })
 
 // Get Single Task
-router.get('/tasks/:id', function (req, res, next) {
+router.get('/task/:id', function (req, res, next) {
     db.tasks.findOne({ _id: mongojs.ObjectId(req.params.id) }, function (err, task) {
         if (err) {
             res.send(err);
         }
         res.json(task);
-    })
+    });
 });
 
-// Save Task (Need to Handle a POST request)
+// Save Task
 router.post('/task', function (req, res, next) {
     var task = req.body; // get the task from a form
-    if (!task.title || (task.isDone + '')) {
+    if (!task.title || !(task.isDone + '')) {
         res.status(400);
         res.json({
             "error": "Bad Data"
@@ -37,22 +37,22 @@ router.post('/task', function (req, res, next) {
                 res.send(err);
             }
             res.json(task);
-        })
+        });
     }
 });
 
 // Delete a Task
-router.delete('/tasks/:id', function (req, res, next) {
+router.delete('/task/:id', function (req, res, next) {
     db.tasks.remove({ _id: mongojs.ObjectId(req.params.id) }, function (err, task) {
         if (err) {
             res.send(err);
         }
         res.json(task);
-    })
+    });
 });
 
 // Update a Task
-router.put('/tasks/:id', function (req, res, next) {
+router.put('/task/:id', function (req, res, next) {
     var task = req.body;
     var updatedTask = {}; // represents the updated task
 
@@ -75,7 +75,7 @@ router.put('/tasks/:id', function (req, res, next) {
                 res.send(err);
             }
             res.json(task);
-        })
+        });
     }
 });
 
